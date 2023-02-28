@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <style>
+      picture {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100px;
+        margin-bottom: 10px;
+      }
+      img {
+        border-radius: 50%;
+        box-shadow: 0 0 15px #555;
+        margin-bottom: 10px;
+      }
+      img.disabled {
+        opacity: 0;
+      }
+    </style>
+        <script
+        src="https://unpkg.com/react@18/umd/react.development.js"
+        crossorigin
+    ></script>
+    <script
+        src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h1>
+      Welcome to Coderhouse
+    </h1>
+    <!-- SOLO HTML -->
+    <div>
+      <!-- <h3>Componentes html</h3>
+      <picture>
+        <img
+          src="https://randomuser.me/api/portraits/lego/1.jpg"
+          alt="Lego 1"
+        />
+        Lego 1
+      </picture>
+      <picture>
+        <img
+          src="https://randomuser.me/api/portraits/lego/2.jpg"
+          alt="Lego 2"
+        />
+        Lego 2
+      </picture> -->
+    </div>
+
+    <!-- DIV DE APP DONDE RENDERIZO MI COMPONENTE HECHO EN JS -->
+    <!-- <h3>Componente con js</h3>
+    <div id="app"></div>
+
+    <script>
+      const $app = document.getElementById("app");
+      console.log($app);
+
+      const Avatar = (params) => {
+        const src = `https://randomuser.me/api/portraits/lego/${params.id}.jpg`;
+        //Los cambios que realice aqui se veran replicados en todos los componentes renderizados
+        return `
+          <picture>
+            <img
+              src="${src}"
+              alt="Lego ${params.id}"
+            />
+            ${params.name}
+          </picture>
+        `;
+      };
+
+      $app.innerHTML += Avatar({ id: 3, name: "Lego 3" });
+      $app.innerHTML += Avatar({ id: 4, name: "Lego 4" });
+
+      $app.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("click", () => {
+          img.classList.toggle("disabled");
+        });
+      });
+    </script> -->
+    <div id="app"></div>
+    <script type="text/babel">
+        const r = React.createElement
+
+        // const Avatar = () => {
+        //     const src = "https://randomuser.me/api/portraits/lego/2.jpg";
+
+        //     return r("picture", {}, [r("img", { src, alt: "imagen" }), "Walter"]);
+        // };
+     
+        const AvatarJsx = () => {
+            const src = "https://randomuser.me/api/portraits/lego/1.jpg";
+
+            return (
+                <picture>
+                    <img src={src} alt="imagen" />
+                    Seba
+                </picture>
+            );
+        };
+
+        const domContainer = document.querySelector("#app");
+        const root = ReactDOM.createRoot(domContainer);
+        root.render(r(AvatarJsx));
+    </script>
+  </body>
+</html>
