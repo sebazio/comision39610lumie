@@ -1,32 +1,37 @@
 import { useState } from 'react'
 import Button from '../Button/Button'
 
-const Counter = () => {
-    const [count, setCount] = useState(0)
+const Counter = ({ title, min, max }) => {
+    const [count, setCount] = useState(min)
+    const [message, setMessage] = useState('')
 
 
     const decrement = () => {
-        if(count > 0) {
-            setCount(prev => prev - 1)
+        setMessage('')
+        if(count > min) { 
+            setCount(count => count - 1)
+        } else {
+            setMessage(`No puede comprar menos de ${min} ${title}`)
         }
+
     }
 
     const increment = () => {
-        for(let i = 0; i < 5; i++) {
-            setCount(prev => {
-                console.log(prev)
-                return prev + 1
-            })
+        setMessage('')
+        if(count < max) {
+            setCount(count => count + 1)
+        } else {
+            setMessage(`No puede comprar mas de ${max} ${title}`)
         }
     }
    
     return (
-        <div>
-            <h1>{count}</h1>
+        <div style={{ margin: 30}}>
+            <h1>{title}</h1>
+            <h2>{count}</h2>
             <Button callback={decrement} label={'decrementar'}/>
             <Button callback={increment} label={'increment'}/>
-            {/* <button onClick={decrement}>decrementar</button>
-            <button onClick={increment}>incrementar</button> */}
+            {message !== '' && <p style={{ color: 'red'}}>{message}</p>}
         </div>
     )
 }
